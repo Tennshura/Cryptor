@@ -178,7 +178,7 @@ class SeededEncryptor:
         # makes a table to be used for the translation function that
         # maps all ascii characters to a pseudorandom character from the trans_list
         enc_table = str.maketrans(ascii_cl, trans_set)
-        # translates the final encrypted
+        # translates the final encrypted string
         self.enc_string = self.enc_string.translate(enc_table)
 
     def run_encryption(self):
@@ -188,10 +188,14 @@ class SeededEncryptor:
         return self.enc_string
     
     def test(self):
-        # short code to test the encryptor with step by step output
-        return self.run_encryption()
+        # short code to test the encryptor with step by step output for diagnosing issues
+        self.first_encryption()
+        print(self.enc_string)
+        self.second_encryption()
+        print(self.enc_string)
+        self.third_encryption()
+        print(self.enc_string)
     
-
 if __name__ == "__main__":
-    test_enc = SeededEncryptor("Seed1","Encryption Data!")
+    test_enc = SeededEncryptor(input("Seed:"),input("String:"))
     print(test_enc.test())
