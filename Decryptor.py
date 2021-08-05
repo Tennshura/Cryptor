@@ -15,7 +15,7 @@ class SeededDecryptor:
         self.seed = seed
         self.enc_string = enc_string
         self.out_string = self.enc_string
-        # initiate rng using provided seed and determines encryption values
+        # initiate rng using provided seed and determines decryption values
         rnd.seed(self.seed)
         self.enc_1 = rnd.randint(1, 2)
         self.enc_2 = rnd.randint(0, 10)
@@ -50,7 +50,7 @@ class SeededDecryptor:
             else:
                 chunk_size = 1
             # creates a list with a digit corresponding to each
-            # letter in the string
+            # char in the initial string
             shuf_index = [i for i in range(0, string_length)]
             # takes that list and seperates it using the
             # same parameters as encryptor
@@ -69,7 +69,7 @@ class SeededDecryptor:
             self.state_reset()
             # zips the list of characters in the encrypted string with the list
             # of the original character indexes and then sorts the list by index
-            # creating an unshuffle list
+            # creating an unshuffled list
             out_list = [char for index, char in sorted(zip(deshuffle_index, out_list))]
             self.out_string = "".join(out_list)
 
@@ -200,9 +200,15 @@ class SeededDecryptor:
         return self.out_string
     
     def test(self):
-        return self.run_decryption()
-    
-
+        # test the decryptor, outputting the result of each step
+        self.third_decryption()
+        print(self.out_string)
+        self.second_decryption()
+        print(self.out_string)
+        self.first_decryption()
+        print(self.out_string)
+        
 if __name__ == "__main__":
+    print("Tested using seed \"Seed1\", with an expected output of \"Encryption Data!\")
     test_dec = SeededDecryptor("Seed1","qO^¦B‡dœ0#»²œ1OB")
     print(test_dec.test())
