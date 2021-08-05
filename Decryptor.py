@@ -209,6 +209,6 @@ class SeededDecryptor:
         print(self.out_string)
         
 if __name__ == "__main__":
-    print("Tested using seed \"Seed1\", with an expected output of \"Encryption Data!\")
+    print("Tested using seed \"Seed1\", with an expected output of \"Encryption Data!\"")
     test_dec = SeededDecryptor("Seed1","qO^¦B‡dœ0#»²œ1OB")
     print(test_dec.test())
